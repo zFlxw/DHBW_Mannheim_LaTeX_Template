@@ -20,15 +20,15 @@
 
 	% Deckblatt
 	\begin{spacing}{1}
-		\input{ads/deckblatt}
+		\input{ads/deckblattPA}
 	\end{spacing}
 	\newpage
 
 	\pagenumbering{Roman}
 
 	% Sperrvermerk
-	\input{ads/sperrvermerk}
-	\newpage
+	% \input{ads/sperrvermerk}
+	% \newpage
 
 	% Erklärung
 	\input{ads/erklaerung}
@@ -41,7 +41,13 @@
 	\pagestyle{plain}		% nur Seitenzahlen im Fuß
 	
 	\RedeclareSectionCommand[beforeskip=\kapitelabstand         ]{chapter} % stellt Abstand vor Kapitelüberschriften ein
-
+	
+	{ % Lokale Umgebung um Links schwarz zu machen
+  	\hypersetup{
+		linkcolor=black,
+		% linktocpage=true, 		% Nicht der Text sondern die Seitenzahlen in Verzeichnissen klickbar
+		}
+	
 	% Inhaltsverzeichnis
 	\begin{spacing}{1.1}
 		\begingroup
@@ -77,7 +83,7 @@
 	\cleardoublepage
 	\lstlistoflistings
 	\cleardoublepage
-
+	}
 	\pagenumbering{arabic}
 	
 	\pagestyle{headings}		% Kolumnentitel im Kopf, Seitenzahlen im Fuß

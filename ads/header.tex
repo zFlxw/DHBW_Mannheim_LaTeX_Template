@@ -26,14 +26,13 @@
 	toc=bibliography,	% Literaturverzeichnis im Inhaltsverzeichnis darstellen
 ]{scrreprt}	% Koma-Script report-Klasse, fuer laengere Bachelorarbeiten alternativ auch: scrbook
 
-% Einstellungen laden
-\usepackage{xstring}
-\usepackage[utf8]{inputenc}
-\usepackage[T1]{fontenc}
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% TEMPLATE EINSTELLUNGEN
+%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newcommand{\einstellung}[1]{%
-  \expandafter\newcommand\csname #1\endcsname{}
-  \expandafter\newcommand\csname setze#1\endcsname[1]{\expandafter\renewcommand\csname#1\endcsname{##1}}
+\expandafter\newcommand\csname #1\endcsname{}
+\expandafter\newcommand\csname setze#1\endcsname[1]{\expandafter\renewcommand\csname#1\endcsname{##1}}
 }
 \newcommand{\langstr}[1]{\einstellung{lang#1}}
 
@@ -43,18 +42,26 @@
 \input{lang/strings} % verfügbare Strings
 \input{lang/\sprache} % Übersetzung einlesen
 
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% SPRACHEINSTELLUNGEN
+%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage{xstring}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
 % Einstellung der Sprache des Paketes Babel und der Verzeichnisüberschriften
-\iflang{de}{\usepackage[english, ngerman]{babel}}
-\iflang{en}{\usepackage[ngerman, english]{babel}} 
+\iflang{de}{\usepackage[main=ngerman, english]{babel}}
+\iflang{en}{\usepackage[main=english, ngerman]{babel}} 
+\usepackage[autostyle=true,babel=true]{csquotes}
 
 
-%%%%%%% Package Includes %%%%%%%
-
-\usepackage[margin=\seitenrand,foot=1cm]{geometry}	% Seitenränder und Abstände
-\usepackage[activate]{microtype} %Zeilenumbruch und mehr
+%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% IMPORTS
+%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage[a4paper, margin=\seitenrand,foot=1cm]{geometry}	% Seitenränder und Abstände
+\usepackage[activate, stretch=10, shrink=10, kerning=true]{microtype}
 \usepackage[onehalfspacing]{setspace}
 \usepackage{makeidx}
-\usepackage[autostyle=true,german=quotes]{csquotes}
 \usepackage{longtable}
 \usepackage{enumitem}	% mehr Optionen bei Aufzählungen
 \usepackage{graphicx}
@@ -70,6 +77,25 @@
 \usepackage[printonlyused]{acronym} % falls gewünscht kann die Option footnote eingefügt werden, dann wird die Erklärung nicht inline sondern in einer Fußnote dargestellt
 \usepackage{listings}
 
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% CONFIGURATION
+%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%% Mycrotype %%%%%%%%
+\SetExtraKerning[unit=space]{
+    encoding={*},
+    family={bch},
+    series={*},
+    size={footnotesize,small,normalsize}
+}{
+    \textendash={400,400},      % en-dash, add more space around it
+    "28={ ,150},                % left bracket, add space from right
+    "29={150, },                % right bracket, add space from left
+    \textquotedblleft={ ,150},  % left quotation mark, space from right
+    \textquotedblright={150, }  % right quotation mark, space from left
+}
+
 % Notizen. Einsatz mit \todo{Notiz} oder \todo[inline]{Notiz}. 
 \usepackage[obeyFinal,backgroundcolor=yellow,linecolor=black]{todonotes}
 % Alle Notizen ausblenden mit der Option "final" in \documentclass[...] oder durch das auskommentieren folgender Zeile
@@ -78,12 +104,8 @@
 % Kommentarumgebung. Einsatz mit \comment{}. Alle Kommentare ausblenden mit dem Auskommentieren der folgenden und dem aktivieren der nächsten Zeile.
 \newcommand{\comment}[1]{\par {\bfseries \color{blue} #1 \par}} %Kommentar anzeigen
 % \newcommand{\comment}[1]{} %Kommentar ausblenden
-
-
-%%%%%% Configuration %%%%%
-
+	
 %% Anwenden der Einstellungen
-
 \usepackage{\schriftart}
 \ladefarben{}
 
@@ -92,8 +114,9 @@
 \author{\autor}
 \date{\datum}
 
+%%%%%%%% Hyperref %%%%%%%%
 % PDF Einstellungen
-\usepackage[%
+\usepackage[
 	pdftitle={\titel},
 	pdfauthor={\autor},
 	pdfsubject={\arbeit},
@@ -101,6 +124,7 @@
 	pdfpagemode=UseOutlines, 		% Beim Oeffnen Inhaltsverzeichnis anzeigen
 	pdfdisplaydoctitle=true, 		% Dokumenttitel statt Dateiname anzeigen.
 	pdflang={\sprache}, 			% Sprache des Dokuments.
+	hidelinks,
 ]{hyperref}
 
 % (Farb-)einstellungen für die Links im PDF
@@ -111,7 +135,6 @@
 	filecolor=LinkColor,
 	menucolor=LinkColor,
 	urlcolor=LinkColor,
-	linktocpage=true, 		% Nicht der Text sondern die Seitenzahlen in Verzeichnissen klickbar
 	bookmarksnumbered=true 	% Überschriftsnummerierung im PDF Inhalt anzeigen.
 }
 % Workaround um Fehler in Hyperref, muss hier stehen bleiben
@@ -120,6 +143,7 @@
 % Schriftart in Captions etwas kleiner
 \addtokomafont{caption}{\small}
 
+%%%%%%%% BIBLATEX %%%%%%%%%
 % Literaturverweise (sowohl deutsch als auch englisch)
 \iflang{de}{%
 \usepackage[
@@ -145,7 +169,7 @@
 % Glossar
 \usepackage[nonumberlist,toc]{glossaries}
 
-%%%%%% Additional settings %%%%%%
+%%%%%% Weitere Einstellungen %%%%%%
 
 % Hurenkinder und Schusterjungen verhindern
 % http://projekte.dante.de/DanteFAQ/Silbentrennung
