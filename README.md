@@ -1,10 +1,13 @@
+# DHBW Mannheim LaTeX-Vorlage
+Diese LaTeX-Vorlage versucht die [Vorgaben der DHBW-Mannheim](https://www.dhbw.de/fileadmin/user_upload/Dokumente/Dokumente_fuer_Studierende/191212_Leitlinien_Praxismodule_Studien_Bachelorarbeiten.pdf) einzuhalten.
+
+Jedoch ist die Vorlage nur ein Muster und garantiert dies nicht! Bitte passen Sie die Vorlage an Ihre Bedürfnisse an, welche Sie mit Ihrem wissenschaftlichen Betreuer vereinbart haben.
+
 # Vorlage verwenden
 Pflichtangaben und einigen weitere Einstellungen können in `einstellungen.tex` geändert werden. Kapitel werden in `content` nach dem Schema `<nn>kapitel.tex` angelegt, wobei &lt;nn&gt; eine mindestens zweistellige Zahl sein muss. Das Logo der Firma kann durch das Ersetzen der Datei `images/fima-deckblatt.png` geändert werden. Die Größe des Bildes ändert man durch das Verkleinern/Vergrößern der Datei.
 
 ## Probleme
-Probleme, die sich konkret mit der Vorlage zurückführen lassen und Verbesserungsvorschläge können mit einem Github-Account [hier](https://github.com/dhbw-horb/latexVorlage/issues) gemeldet werden. Bei Problemen ist eine nachvollziehbare Beschreibung des Problems und der eigenen Lösungsversuche notwendig.
-
-Hinweis: Unter Miktex 2.9 gibt es derzeit leider Probleme, die aber umgangen werden können. [Mehr dazu hier](https://github.com/dhbw-horb/latexVorlage/issues/23).
+Probleme, die sich konkret mit der Vorlage zurückführen lassen und Verbesserungsvorschläge können mit einem Github-Account [hier](https://github.com/Kasi07/DHBW_Mannheim_LaTeX_Template/issues) gemeldet werden. Bei Problemen ist eine nachvollziehbare Beschreibung des Problems und der eigenen Lösungsversuche notwendig.
 
 # Compilieren
 Für das Paket _latexmk_ und die Erzeugung eines Glossars muss ein Perl-Interpreter installiert sein. Linux- und Mac-User haben normalerweise diesen schon im System installiert. Windows-Nutzern ist ActivePerl zu empfehlen (http://www.activestate.com/activeperl/downloads). Die Vorlage nutzt außerdem _biblatex_ mit dem Backend _biber_ für die Bibliographie.
@@ -39,6 +42,5 @@ Wenn kein latexmk installiert werden kann oder soll, stellt das makefile auch di
 
 # Nur Deckblatt verwenden
 ```latex
-% .....
 \includepdf[pages=1]{../latexVorlage/dokumentation.pdf}
 ```
