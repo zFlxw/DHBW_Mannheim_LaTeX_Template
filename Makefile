@@ -16,7 +16,8 @@ clean:
 
 # cleanup tempfiles
 cleanup:
-	latexmk -c
+#	latexmk -c
+	rm -rf $(OUTPUT_DIR)
 
 # Generate PDF output from LaTeX input files
 report:
