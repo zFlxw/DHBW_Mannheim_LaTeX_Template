@@ -5,3 +5,7 @@ babel-german
 wrapfig
 acronym
 todonotes
+
+# LaTeX Workshop
+latexindent
+texdoc
