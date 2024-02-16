@@ -1,34 +1,34 @@
 %!TEX root = ../dokumentation.tex
 
 %
-% Nahezu alle Einstellungen koennen hier getaetigt werden
+% Almost all settings can be set here
 %
 
 \RequirePackage[l2tabu, orthodox]{nag}	% weist in Commandozeile bzw. log auf veraltete LaTeX Syntax hin
 
 \documentclass[%
 	pdftex,
-	oneside,			% Einseitiger Druck.
-	12pt,				% Schriftgroesse
-	parskip=half,		% Halbe Zeile Abstand zwischen Absätzen.
-%	topmargin = 10pt,	% Abstand Seitenrand (Std:1in) zu Kopfzeile [laut log: unused]
-	headheight = 12pt,	% Höhe der Kopfzeile
-% 	headsep = 30pt,		% Abstand zwischen Kopfzeile und Text Body  [laut log: unused]
-	headsepline,		% Linie nach Kopfzeile.
-	footsepline,		% Linie vor Fusszeile.
-	footheight = 16pt,	% Höhe der Fusszeile
-	abstracton,		% Abstract Überschriften
-	DIV=calc,		% Satzspiegel berechnen
-	BCOR=8mm,		% Bindekorrektur links: 8mm
-	headinclude=false,	% Kopfzeile nicht in den Satzspiegel einbeziehen
-	footinclude=false,	% Fußzeile nicht in den Satzspiegel einbeziehen
-	listof=totoc,		% Abbildungs-/ Tabellenverzeichnis im Inhaltsverzeichnis darstellen
-	toc=bibliography,	% Literaturverzeichnis im Inhaltsverzeichnis darstellen
-]{scrreprt}	% Koma-Script report-Klasse, fuer laengere Bachelorarbeiten alternativ auch: scrbook
+	oneside,						% onesided print
+	12pt,							% fontsize
+	parskip=half,					% half a line between paragraphs
+%	topmargin = 10pt,				% distance page margin (Std:1in) to header [according to log: unused]
+	headheight = 12pt,				% height of header
+% 	headsep = 30pt,					% distance between header and text body [according to log: unused]
+	headsepline,					% line after header
+	footsepline,					% line before footer
+	footheight = 16pt,				% height of footer
+	abstracton,						% abstract heading
+	DIV=calc,						% calculates type area
+	BCOR=8mm,						% binding correction left: 8mm
+	headinclude=false,				% do not include header in type area calculation
+	footinclude=false,				% do not include footer in type area calculation
+	listof=totoc,					% display list of figures/tables in toc
+	toc=bibliography,				% display bibliography in toc
+]{scrreprt}							% Koma-Script report class, for longer bachelor thesis alternatively use scrbook
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%
-%% TEMPLATE EINSTELLUNGEN
+%% TEMPLATE SETTINGS
 %%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newcommand{\einstellung}[1]{%
 	\expandafter\newcommand\csname #1\endcsname{}
@@ -36,20 +36,19 @@
 }
 \newcommand{\langstr}[1]{\einstellung{lang#1}}
 
-\input{ads/einstellungen_liste} % verfügbare Einstellungen
-\input{einstellungen} % lese Einstellungen
-
-\input{lang/strings} % verfügbare Strings
-\input{lang/\sprache} % Übersetzung einlesen
+\input{ads/einstellungen_liste} 	% available settings
+\input{einstellungen} 				% read settings
+\input{lang/strings} 				% available strings
+\input{lang/\sprache} 				% read translations
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%
-%% SPRACHEINSTELLUNGEN
+%% LANGUAGE SETTINGS
 %%%%%%%%%%%%%%%%%%%%%%%%%%%
 \usepackage{xstring}
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
-% Einstellung der Sprache des Paketes Babel und der Verzeichnisüberschriften
+% setting for the language of the package babel and the directory headings
 \iflang{de}{\usepackage[main=ngerman, english]{babel}}
 \iflang{en}{\usepackage[main=english, ngerman]{babel}}
 \usepackage[autostyle=true,babel=true]{csquotes}
@@ -58,26 +57,26 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% IMPORTS
 %%%%%%%%%%%%%%%%%%%%%%%%%%%
-\usepackage[a4paper, margin=\seitenrand,foot=1cm]{geometry}	% Seitenränder und Abstände
+\usepackage[a4paper, margin=\seitenrand,foot=1cm]{geometry}	% Margins and spacing
 \usepackage[activate, stretch=10, shrink=10, kerning=true]{microtype}
 \usepackage[onehalfspacing]{setspace}
 \usepackage{makeidx}
 \usepackage{longtable}
-\usepackage{enumitem}	% mehr Optionen bei Aufzählungen
+\usepackage{enumitem}				% more options for enumerations
 \usepackage{graphicx}
-\usepackage{pdfpages}   % zum Einbinden von PDFs
-\usepackage{xcolor} 	% für HTML-Notation
+\usepackage{pdfpages}   			% to include pdfs
+\usepackage{xcolor} 				% for HTML notation
 \usepackage{array}
-\usepackage{calc}		% zum Rechnen (Bildtabelle in Deckblatt)
+\usepackage{calc}					% to calculate (picture table in cover sheet)
 \usepackage[right]{eurosym}
 \usepackage{wrapfig}
-\usepackage{pgffor} % für automatische Kapiteldateieinbindung
-\usepackage[perpage, hang, multiple, stable]{footmisc} % Fussnoten
-\usepackage[printonlyused]{acronym} % falls gewünscht kann die Option footnote eingefügt werden, dann wird die Erklärung nicht inline sondern in einer Fußnote dargestellt
+\usepackage{pgffor} 				% for automatic inclusion of chapters
+\usepackage[perpage, hang, multiple, stable]{footmisc}	% footnotes
+\usepackage[printonlyused]{acronym} % if desired, the footnote option can be inserted, in which case the explanation is not displayed inline but in a footnote
 \usepackage{tocbasic}
 \usepackage{listings}
-\usepackage{scrhack}	% Hilft gegen manche Warnungen
-% \usepackage{showframe}	% Zum debuggen 
+\usepackage{scrhack}				% helps against some warnings
+%\usepackage{showframe}				% for debugging the layout
 
 
 
@@ -91,76 +90,76 @@ family={bch},
 series={*},
 size={footnotesize,small,normalsize}
 }{
-\textendash={400,400},      % en-dash, add more space around it
-"28={ ,150},                % left bracket, add space from right
-"29={150, },                % right bracket, add space from left
-\textquotedblleft={ ,150},  % left quotation mark, space from right
-\textquotedblright={150, }  % right quotation mark, space from left
+\textendash={400,400},      		% en-dash, add more space around it
+"28={ ,150},                		% left bracket, add space from right
+"29={150, },                		% right bracket, add space from left
+\textquotedblleft={ ,150},  		% left quotation mark, space from right
+\textquotedblright={150, }  		% right quotation mark, space from left
 }
 
-% Notizen. Einsatz mit \todo{Notiz} oder \todo[inline]{Notiz}. 
+% Notes. Usage with \todo{note} or \todo[inline]{note}.
 \usepackage[obeyFinal,backgroundcolor=yellow,linecolor=black]{todonotes}
-% Alle Notizen ausblenden mit der Option "final" in \documentclass[...] oder durch das auskommentieren folgender Zeile
+% Hide all notes with the option "final" in \documentclass[...] or by commenting out the following line
 % \usepackage[disable]{todonotes}
 
-% Kommentarumgebung. Einsatz mit \comment{}. Alle Kommentare ausblenden mit dem Auskommentieren der folgenden und dem aktivieren der nächsten Zeile.
-\newcommand{\comment}[1]{\par {\bfseries \color{blue} #1 \par}} %Kommentar anzeigen
-% \newcommand{\comment}[1]{} %Kommentar ausblenden
+% Comment environment. Usage with \comment{}. Hide all comments by commenting the following line and activating the next line.
+\newcommand{\comment}[1]{\par {\bfseries \color{blue} #1 \par}} % view comments		
+% \newcommand{\comment}[1]{} % hide all comments
 
-%% Anwenden der Einstellungen
+%% Apply font settings
 \usepackage{\schriftart}
 \ladefarben{}
 
-% Titel, Autor und Datum
+% Title, author and date
 \title{\titel}
 \author{\autor}
 \date{\datum}
 
 %%%%%%%% Hyperref %%%%%%%%
-% PDF Einstellungen
+% PDF settings
 \usepackage[
 	pdftitle={\titel},
 	pdfauthor={\autor},
 	pdfsubject={\arbeit},
 	pdfcreator={pdflatex, LaTeX with KOMA-Script},
-	pdfpagemode=UseOutlines, 		% Beim Oeffnen Inhaltsverzeichnis anzeigen
-	pdfdisplaydoctitle=true, 		% Dokumenttitel statt Dateiname anzeigen.
-	pdflang={\sprache}, 			% Sprache des Dokuments.
+	pdfpagemode=UseOutlines, 		% display table of contents on opening
+	pdfdisplaydoctitle=true, 		% display document title instead of file name in title bar
+	pdflang={\sprache}, 			% language of the document
 	hidelinks,
 ]{hyperref}
 
-% (Farb-)einstellungen für die Links im PDF
+% (color-)settings for links in the pdf
 \hypersetup{%
-	colorlinks=true, 		% Aktivieren von farbigen Links im Dokument
-	linkcolor=LinkColor, 	% Farbe festlegen
+	colorlinks=true, 				% activate colored links
+	linkcolor=LinkColor, 			% set color
 	citecolor=LinkColor,
 	filecolor=LinkColor,
 	menucolor=LinkColor,
 	urlcolor=LinkColor,
-	bookmarksnumbered=true 	% Überschriftsnummerierung im PDF Inhalt anzeigen.
+	bookmarksnumbered=true 			% show chapter numbers in pdf bookmarks
 }
-% Workaround um Fehler in Hyperref, muss hier stehen bleiben
-\usepackage{bookmark} %nur ein latex-Durchlauf für die Aktualisierung von Verzeichnissen nötig
+% Workaround to solve bug in Hyperref, must stay here
+\usepackage{bookmark} 				% only one latex run is needed to update table of contents and references		
 
-% Schriftart in Captions etwas kleiner
+% a little bit smaller fonts in captions
 \addtokomafont{caption}{\small}
 
 %%%%%%%% BIBLATEX %%%%%%%%%
-% Literaturverweise (sowohl deutsch als auch englisch)
+% literature references
 \iflang{de}{%
 	\usepackage[
-		backend=biber,		% empfohlen. Falls biber Probleme macht: bibtex
+		backend=biber,				% recommended. If biber causes problems: bibtex
 		bibwarn=true,
-		bibencoding=utf8,	% wenn .bib in utf8, sonst ascii
+		bibencoding=utf8,			% if .bib is utf8, otherwise ascii
 		sortlocale=de_DE,
 		style=\zitierstil,
 	]{biblatex}
 }
 \iflang{en}{%
 	\usepackage[
-		backend=biber,		% empfohlen. Falls biber Probleme macht: bibtex
+		backend=biber,				% recommended. If biber causes problems: bibtex
 		bibwarn=true,
-		bibencoding=utf8,	% wenn .bib in utf8, sonst ascii
+		bibencoding=utf8,			% if .bib is utf8, otherwise ascii
 		sortlocale=en_US,
 		style=\zitierstil,
 	]{biblatex}
@@ -171,25 +170,25 @@ size={footnotesize,small,normalsize}
 % Glossar
 \usepackage[nonumberlist,toc]{glossaries}
 
-%%%%%% Weitere Einstellungen %%%%%%
+%%%%%% Additional Settings %%%%%%
 
 % Hurenkinder und Schusterjungen verhindern
-% http://projekte.dante.de/DanteFAQ/Silbentrennung
-\clubpenalty = 10000 % schließt Schusterjungen aus (Seitenumbruch nach der ersten Zeile eines neuen Absatzes)
-\widowpenalty = 10000 % schließt Hurenkinder aus (die letzte Zeile eines Absatzes steht auf einer neuen Seite)
+% prevent widow and orphan lines
+\clubpenalty = 10000 				% prevent orphans (first line of a paragraph at the end of a page)
+\widowpenalty = 10000 				% prevent widows  (last line of a paragraph at the beginning of a page)
 \displaywidowpenalty=10000
 
-% Bildpfad
+% image path
 \graphicspath{{images/}}
 
-% Einige häufig verwendete Sprachen
+% some often used programming languages
 \lstloadlanguages{PHP,Python,Java,C,C++,bash}
 \listingsettings{}
-% Umbennung des Listings
+% rename listings
 \renewcommand\lstlistingname{\langlistingname}
 \renewcommand\lstlistlistingname{\langlistlistingname}
 \def\lstlistingautorefname{\langlistingautorefname}
 
-% Abstände in Tabellen
+% spacing in tables
 \setlength{\tabcolsep}{\spaltenabstand}
 \renewcommand{\arraystretch}{\zeilenabstand}
