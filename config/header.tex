@@ -13,7 +13,7 @@
 	parskip=half,		% Halbe Zeile Abstand zwischen Absätzen.
 %	topmargin = 10pt,	% Abstand Seitenrand (Std:1in) zu Kopfzeile [laut log: unused]
 	headheight = 12pt,	% Höhe der Kopfzeile
-%	headsep = 30pt,	% Abstand zwischen Kopfzeile und Text Body  [laut log: unused]
+% 	headsep = 30pt,		% Abstand zwischen Kopfzeile und Text Body  [laut log: unused]
 	headsepline,		% Linie nach Kopfzeile.
 	footsepline,		% Linie vor Fusszeile.
 	footheight = 16pt,	% Höhe der Fusszeile
@@ -31,8 +31,8 @@
 %% TEMPLATE EINSTELLUNGEN
 %%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newcommand{\einstellung}[1]{%
-\expandafter\newcommand\csname #1\endcsname{}
-\expandafter\newcommand\csname setze#1\endcsname[1]{\expandafter\renewcommand\csname#1\endcsname{##1}}
+	\expandafter\newcommand\csname #1\endcsname{}
+	\expandafter\newcommand\csname setze#1\endcsname[1]{\expandafter\renewcommand\csname#1\endcsname{##1}}
 }
 \newcommand{\langstr}[1]{\einstellung{lang#1}}
 
@@ -51,7 +51,7 @@
 \usepackage[T1]{fontenc}
 % Einstellung der Sprache des Paketes Babel und der Verzeichnisüberschriften
 \iflang{de}{\usepackage[main=ngerman, english]{babel}}
-\iflang{en}{\usepackage[main=english, ngerman]{babel}} 
+\iflang{en}{\usepackage[main=english, ngerman]{babel}}
 \usepackage[autostyle=true,babel=true]{csquotes}
 
 
@@ -86,16 +86,16 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%% Mycrotype %%%%%%%%
 \SetExtraKerning[unit=space]{
-    encoding={*},
-    family={bch},
-    series={*},
-    size={footnotesize,small,normalsize}
+encoding={*},
+family={bch},
+series={*},
+size={footnotesize,small,normalsize}
 }{
-    \textendash={400,400},      % en-dash, add more space around it
-    "28={ ,150},                % left bracket, add space from right
-    "29={150, },                % right bracket, add space from left
-    \textquotedblleft={ ,150},  % left quotation mark, space from right
-    \textquotedblright={150, }  % right quotation mark, space from left
+\textendash={400,400},      % en-dash, add more space around it
+"28={ ,150},                % left bracket, add space from right
+"29={150, },                % right bracket, add space from left
+\textquotedblleft={ ,150},  % left quotation mark, space from right
+\textquotedblright={150, }  % right quotation mark, space from left
 }
 
 % Notizen. Einsatz mit \todo{Notiz} oder \todo[inline]{Notiz}. 
@@ -106,7 +106,7 @@
 % Kommentarumgebung. Einsatz mit \comment{}. Alle Kommentare ausblenden mit dem Auskommentieren der folgenden und dem aktivieren der nächsten Zeile.
 \newcommand{\comment}[1]{\par {\bfseries \color{blue} #1 \par}} %Kommentar anzeigen
 % \newcommand{\comment}[1]{} %Kommentar ausblenden
-	
+
 %% Anwenden der Einstellungen
 \usepackage{\schriftart}
 \ladefarben{}
@@ -148,22 +148,22 @@
 %%%%%%%% BIBLATEX %%%%%%%%%
 % Literaturverweise (sowohl deutsch als auch englisch)
 \iflang{de}{%
-\usepackage[
-	backend=biber,		% empfohlen. Falls biber Probleme macht: bibtex
-	bibwarn=true,
-	bibencoding=utf8,	% wenn .bib in utf8, sonst ascii
-	sortlocale=de_DE,
-	style=\zitierstil,
-]{biblatex}
+	\usepackage[
+		backend=biber,		% empfohlen. Falls biber Probleme macht: bibtex
+		bibwarn=true,
+		bibencoding=utf8,	% wenn .bib in utf8, sonst ascii
+		sortlocale=de_DE,
+		style=\zitierstil,
+	]{biblatex}
 }
 \iflang{en}{%
-\usepackage[
-	backend=biber,		% empfohlen. Falls biber Probleme macht: bibtex
-	bibwarn=true,
-	bibencoding=utf8,	% wenn .bib in utf8, sonst ascii
-	sortlocale=en_US,
-	style=\zitierstil,
-]{biblatex}
+	\usepackage[
+		backend=biber,		% empfohlen. Falls biber Probleme macht: bibtex
+		bibwarn=true,
+		bibencoding=utf8,	% wenn .bib in utf8, sonst ascii
+		sortlocale=en_US,
+		style=\zitierstil,
+	]{biblatex}
 }
 
 \ladeliteratur{}
