@@ -14,31 +14,31 @@
 %% Datum: 16.08.2023
 %%*****************************************************************************
 
-\input{ads/header}
+\input{config/header}
 
 \makeglossaries
-\input{ads/glossary}
+\input{config/glossary}
 
 \begin{document}
 
 % Deckblatt
 \begin{spacing}{1}
-	\input{ads/deckblattPA}
+	\input{coverpage/project-thesis}
 \end{spacing}
 \newpage
 
 \pagenumbering{Roman}
 
 % Sperrvermerk
-% \input{ads/sperrvermerk}
+% \input{front-back-matter/confidentiality-notice}
 % \newpage
 
 % Erklärung
-\input{ads/erklaerung}
+\input{front-back-matter/statement-of-authorship}
 \newpage
 
 % Abstract
-\input{ads/abstract}
+\input{front-back-matter/abstract}
 \newpage
 
 \pagestyle{plain}		% nur Seitenzahlen im Fuß
@@ -72,7 +72,7 @@
 
 	% Abkürzungsverzeichnis
 	\cleardoublepage
-	\input{ads/acronyms}
+	\input{config/acronyms}
 
 	% Abbildungsverzeichnis
 	\cleardoublepage
@@ -114,6 +114,6 @@
 % sonstiger Anhang
 \clearpage
 \appendix
-\input{ads/appendix}
+\input{front-back-matter/appendix}
 
 \end{document}

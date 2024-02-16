@@ -11,13 +11,13 @@
 	oneside,						% onesided print
 	12pt,							% fontsize
 	parskip=half,					% half a line between paragraphs
-%	topmargin = 10pt,				% distance page margin (Std:1in) to header [according to log: unused]
+	%	topmargin = 10pt,				% distance page margin (Std:1in) to header [according to log: unused]
 	headheight = 12pt,				% height of header
-% 	headsep = 30pt,					% distance between header and text body [according to log: unused]
+	% 	headsep = 30pt,					% distance between header and text body [according to log: unused]
 	headsepline,					% line after header
 	footsepline,					% line before footer
 	footheight = 16pt,				% height of footer
-	abstracton,						% abstract heading
+	abstract,						% abstract heading
 	DIV=calc,						% calculates type area
 	BCOR=8mm,						% binding correction left: 8mm
 	headinclude=false,				% do not include header in type area calculation
@@ -36,7 +36,7 @@
 }
 \newcommand{\langstr}[1]{\einstellung{lang#1}}
 
-\input{ads/einstellungen_liste} 	% available settings
+\input{config/settings-list} 	% available settings
 \input{einstellungen} 				% read settings
 \input{lang/strings} 				% available strings
 \input{lang/\sprache} 				% read translations
