@@ -11,12 +11,14 @@ all: report
 # Remove output directory and generated document
 clean:
 	rm -rf $(OUTPUT_DIR)
+	rm -f indent.log
 	rm -f $(DOCUMENT_NAME).pdf
 	rm -f $(DOCUMENT_NAME).synctex.gz
 
 # cleanup tempfiles
 cleanup:
 #	latexmk -c
+	rm -f indent.log $(DOCUMENT_NAME).synctex.gz
 	rm -rf $(OUTPUT_DIR)
 
 # Generate PDF output from LaTeX input files

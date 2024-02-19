@@ -1,0 +1,194 @@
+%!TEX root = ../dokumentation.tex
+
+%
+% Almost all settings can be set here
+%
+
+\RequirePackage[l2tabu, orthodox]{nag}	% weist in Commandozeile bzw. log auf veraltete LaTeX Syntax hin
+
+\documentclass[%
+	pdftex,
+	oneside,						% onesided print
+	12pt,							% fontsize
+	parskip=half,					% half a line between paragraphs
+	%	topmargin = 10pt,				% distance page margin (Std:1in) to header [according to log: unused]
+	headheight = 12pt,				% height of header
+	% 	headsep = 30pt,					% distance between header and text body [according to log: unused]
+	headsepline,					% line after header
+	footsepline,					% line before footer
+	footheight = 16pt,				% height of footer
+	abstract,						% abstract heading
+	DIV=calc,						% calculates type area
+	BCOR=8mm,						% binding correction left: 8mm
+	headinclude=false,				% do not include header in type area calculation
+	footinclude=false,				% do not include footer in type area calculation
+	listof=totoc,					% display list of figures/tables in toc
+	toc=bibliography,				% display bibliography in toc
+]{scrreprt}							% Koma-Script report class, for longer bachelor thesis alternatively use scrbook
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% TEMPLATE SETTINGS
+%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newcommand{\setting}[1]{%
+	\expandafter\newcommand\csname #1\endcsname{}
+	\expandafter\newcommand\csname set#1\endcsname[1]{\expandafter\renewcommand\csname#1\endcsname{##1}}
+}
+\newcommand{\langstr}[1]{\setting{lang#1}}
+
+\input{config/settings-list} 		% available settings
+\input{settings} 					% read settings
+\input{lang/strings} 				% available strings
+\input{lang/\thesislanguage} 				% read translations
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% LANGUAGE SETTINGS
+%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage{xstring}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+% setting for the language of the package babel and the directory headings
+\iflang{de}{\usepackage[main=ngerman, english]{babel}}
+\iflang{en}{\usepackage[main=english, ngerman]{babel}}
+\usepackage[autostyle=true,babel=true]{csquotes}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% IMPORTS
+%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage[a4paper, margin=\sidemargin,foot=1cm]{geometry}	% Margins and spacing
+\usepackage[activate, stretch=10, shrink=10, kerning=true]{microtype}
+\usepackage[onehalfspacing]{setspace}
+\usepackage{makeidx}
+\usepackage{longtable}
+\usepackage{enumitem}				% more options for enumerations
+\usepackage{graphicx}
+\usepackage{pdfpages}   			% to include pdfs
+\usepackage{xcolor} 				% for HTML notation
+\usepackage{array}
+\usepackage{calc}					% to calculate (picture table in cover sheet)
+\usepackage[right]{eurosym}
+\usepackage{wrapfig}
+\usepackage{pgffor} 				% for automatic inclusion of chapters
+\usepackage[perpage, hang, multiple, stable]{footmisc}	% footnotes
+\usepackage[printonlyused]{acronym} % if desired, the footnote option can be inserted, in which case the explanation is not displayed inline but in a footnote
+\usepackage{tocbasic}
+\usepackage{listings}
+\usepackage{scrhack}				% helps against some warnings
+%\usepackage{showframe}				% for debugging the layout
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% CONFIGURATION
+%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%% Mycrotype %%%%%%%%
+\SetExtraKerning[unit=space]{
+encoding={*},
+family={bch},
+series={*},
+size={footnotesize,small,normalsize}
+}{
+\textendash={400,400},      		% en-dash, add more space around it
+"28={ ,150},                		% left bracket, add space from right
+"29={150, },                		% right bracket, add space from left
+\textquotedblleft={ ,150},  		% left quotation mark, space from right
+\textquotedblright={150, }  		% right quotation mark, space from left
+}
+
+% Notes. Usage with \todo{note} or \todo[inline]{note}.
+\usepackage[obeyFinal,backgroundcolor=yellow,linecolor=black]{todonotes}
+% Hide all notes with the option "final" in \documentclass[...] or by commenting out the following line
+% \usepackage[disable]{todonotes}
+
+% Comment environment. Usage with \comment{}. Hide all comments by commenting the following line and activating the next line.
+\newcommand{\comment}[1]{\par {\bfseries \color{blue} #1 \par}} % view comments		
+% \newcommand{\comment}[1]{} % hide all comments
+
+%% Apply font settings
+\usepackage{\thesisfont}
+\ladefarben{}
+
+% Title, author and date
+\title{\thesistitle}
+\author{\thesisauthor}
+\date{\datum}
+
+%%%%%%%% Hyperref %%%%%%%%
+% PDF settings
+\usepackage[
+	pdftitle={\thesistitle},
+	pdfauthor={\thesisauthor},
+	pdfsubject={\thesistype},
+	pdfcreator={pdflatex, LaTeX with KOMA-Script},
+	pdfpagemode=UseOutlines, 		% display table of contents on opening
+	pdfdisplaydoctitle=true, 		% display document title instead of file name in title bar
+	pdflang={\thesislanguage}, 		% language of the document
+	hidelinks,
+]{hyperref}
+
+% (color-)settings for links in the pdf
+\hypersetup{%
+	colorlinks=true, 				% activate colored links
+	linkcolor=LinkColor, 			% set color
+	citecolor=LinkColor,
+	filecolor=LinkColor,
+	menucolor=LinkColor,
+	urlcolor=LinkColor,
+	bookmarksnumbered=true 			% show chapter numbers in pdf bookmarks
+}
+% Workaround to solve bug in Hyperref, must stay here
+\usepackage{bookmark} 				% only one latex run is needed to update table of contents and references		
+
+% a little bit smaller fonts in captions
+\addtokomafont{caption}{\small}
+
+%%%%%%%% BIBLATEX %%%%%%%%%
+% literature references
+\iflang{de}{%
+	\usepackage[
+		backend=biber,				% recommended. If biber causes problems: bibtex
+		bibwarn=true,
+		bibencoding=utf8,			% if .bib is utf8, otherwise ascii
+		sortlocale=de_DE,
+		style=\citationstyle,
+	]{biblatex}
+}
+\iflang{en}{%
+	\usepackage[
+		backend=biber,				% recommended. If biber causes problems: bibtex
+		bibwarn=true,
+		bibencoding=utf8,			% if .bib is utf8, otherwise ascii
+		sortlocale=en_US,
+		style=\citationstyle,
+	]{biblatex}
+}
+
+\ladeliteratur{}
+
+% Glossar
+\usepackage[nonumberlist,toc]{glossaries}
+
+%%%%%% Additional Settings %%%%%%
+
+% Hurenkinder und Schusterjungen verhindern
+% prevent widow and orphan lines
+\clubpenalty = 10000 				% prevent orphans (first line of a paragraph at the end of a page)
+\widowpenalty = 10000 				% prevent widows  (last line of a paragraph at the beginning of a page)
+\displaywidowpenalty=10000
+
+% image path
+\graphicspath{{images/}}
+
+% some often used programming languages
+\lstloadlanguages{PHP,Python,Java,C,C++,bash}
+\listingsettings{}
+% rename listings
+\renewcommand\lstlistingname{\langlistingname}
+\renewcommand\lstlistlistingname{\langlistlistingname}
+\def\lstlistingautorefname{\langlistingautorefname}
+
+% spacing in tables
+\setlength{\tabcolsep}{\columnspacing}
+\renewcommand{\arraystretch}{\linespacing}

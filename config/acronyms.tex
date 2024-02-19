@@ -1,0 +1,25 @@
+%!TEX root = ../dokumentation.tex
+
+\addchap{\langacronyms}
+% only used acronyms will be listed in the abbreviation list
+% Usage:
+%		\ac{abb.}	--> inserts the abbreviation; the first time it is called, the full version is also automatically inserted in front of it or displayed in a footnote (for this, \usepackage[printonlyused,footnote]{acronym} must be in header.tex)
+%		\acs{abb.}	--> inserts the abbreviation
+%		\acf{abb.}	--> inserts the abbreviation and the full version
+%		\acl{abb.}	--> inserts only the full version
+%		\acp{abb.}	--> outputs the plural form of the abbreviation (added 's'); the additional 'p' can also be used with all of the above commands
+% see also: http://golatex.de/wiki/%5Cacronym
+%
+\begin{acronym}[YTMMM]
+	\setlength{\itemsep}{-\parsep}
+
+	\acro{AGPL}{Affero GNU General Public License}
+	\acro{WSN}{Wireless Sensor Network}
+	\acro{MANET}{Mobile wireless Ad-hoc NETwork}
+	\acro{MAC}{Multiple Access Control}
+	\acro{QoS}{Quality of Service}
+	\acro{DSR}{Dynamic Source Routing}
+	\acro{API}{Application Programming Interface}
+	\acro{WYSIWYG}{What You See Is What You Get}
+	\acro{HTML}{HyperText Markup Language}
+\end{acronym}
