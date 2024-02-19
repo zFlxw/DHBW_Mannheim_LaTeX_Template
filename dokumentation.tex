@@ -43,7 +43,7 @@
 
 \pagestyle{plain}		% nur Seitenzahlen im Fuß
 
-\RedeclareSectionCommand[beforeskip=\kapitelabstand]{chapter} % stellt Abstand vor Kapitelüberschriften ein
+\RedeclareSectionCommand[beforeskip=\chapterspacing]{chapter} % stellt Abstand vor Kapitelüberschriften ein
 
 { % Lokale Umgebung um Links schwarz zu machen
 	\hypersetup{
@@ -109,7 +109,7 @@
 \printbibliography
 
 % Glossar
-\printglossary[style=altlist,title=\langglossar]
+\printglossary[style=altlist,title=\langglossary]
 
 % sonstiger Anhang
 \clearpage

@@ -11,9 +11,9 @@
 	oneside,						% onesided print
 	12pt,							% fontsize
 	parskip=half,					% half a line between paragraphs
-%	topmargin = 10pt,				% distance page margin (Std:1in) to header [according to log: unused]
+	%	topmargin = 10pt,				% distance page margin (Std:1in) to header [according to log: unused]
 	headheight = 12pt,				% height of header
-% 	headsep = 30pt,					% distance between header and text body [according to log: unused]
+	% 	headsep = 30pt,					% distance between header and text body [according to log: unused]
 	headsepline,					% line after header
 	footsepline,					% line before footer
 	footheight = 16pt,				% height of footer
@@ -30,16 +30,16 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% TEMPLATE SETTINGS
 %%%%%%%%%%%%%%%%%%%%%%%%%%%
-\newcommand{\einstellung}[1]{%
+\newcommand{\setting}[1]{%
 	\expandafter\newcommand\csname #1\endcsname{}
-	\expandafter\newcommand\csname setze#1\endcsname[1]{\expandafter\renewcommand\csname#1\endcsname{##1}}
+	\expandafter\newcommand\csname set#1\endcsname[1]{\expandafter\renewcommand\csname#1\endcsname{##1}}
 }
-\newcommand{\langstr}[1]{\einstellung{lang#1}}
+\newcommand{\langstr}[1]{\setting{lang#1}}
 
 \input{config/settings-list} 		% available settings
-\input{einstellungen} 				% read settings
+\input{settings} 					% read settings
 \input{lang/strings} 				% available strings
-\input{lang/\sprache} 				% read translations
+\input{lang/\thesislanguage} 				% read translations
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -57,7 +57,7 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% IMPORTS
 %%%%%%%%%%%%%%%%%%%%%%%%%%%
-\usepackage[a4paper, margin=\seitenrand,foot=1cm]{geometry}	% Margins and spacing
+\usepackage[a4paper, margin=\sidemargin,foot=1cm]{geometry}	% Margins and spacing
 \usepackage[activate, stretch=10, shrink=10, kerning=true]{microtype}
 \usepackage[onehalfspacing]{setspace}
 \usepackage{makeidx}
@@ -107,24 +107,24 @@ size={footnotesize,small,normalsize}
 % \newcommand{\comment}[1]{} % hide all comments
 
 %% Apply font settings
-\usepackage{\schriftart}
+\usepackage{\thesisfont}
 \ladefarben{}
 
 % Title, author and date
-\title{\titel}
-\author{\autor}
+\title{\thesistitle}
+\author{\thesisauthor}
 \date{\datum}
 
 %%%%%%%% Hyperref %%%%%%%%
 % PDF settings
 \usepackage[
-	pdftitle={\titel},
-	pdfauthor={\autor},
-	pdfsubject={\arbeit},
+	pdftitle={\thesistitle},
+	pdfauthor={\thesisauthor},
+	pdfsubject={\thesistype},
 	pdfcreator={pdflatex, LaTeX with KOMA-Script},
 	pdfpagemode=UseOutlines, 		% display table of contents on opening
 	pdfdisplaydoctitle=true, 		% display document title instead of file name in title bar
-	pdflang={\sprache}, 			% language of the document
+	pdflang={\thesislanguage}, 		% language of the document
 	hidelinks,
 ]{hyperref}
 
@@ -152,7 +152,7 @@ size={footnotesize,small,normalsize}
 		bibwarn=true,
 		bibencoding=utf8,			% if .bib is utf8, otherwise ascii
 		sortlocale=de_DE,
-		style=\zitierstil,
+		style=\citationstyle,
 	]{biblatex}
 }
 \iflang{en}{%
@@ -161,7 +161,7 @@ size={footnotesize,small,normalsize}
 		bibwarn=true,
 		bibencoding=utf8,			% if .bib is utf8, otherwise ascii
 		sortlocale=en_US,
-		style=\zitierstil,
+		style=\citationstyle,
 	]{biblatex}
 }
 
@@ -190,5 +190,5 @@ size={footnotesize,small,normalsize}
 \def\lstlistingautorefname{\langlistingautorefname}
 
 % spacing in tables
-\setlength{\tabcolsep}{\spaltenabstand}
-\renewcommand{\arraystretch}{\zeilenabstand}
+\setlength{\tabcolsep}{\columnspacing}
+\renewcommand{\arraystretch}{\linespacing}
