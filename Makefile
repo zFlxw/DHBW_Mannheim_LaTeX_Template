@@ -18,7 +18,7 @@ clean:
 # cleanup tempfiles
 cleanup:
 #	latexmk -c
-	rm -f indent.log
+	rm -f indent.log $(DOCUMENT_NAME).synctex.gz
 	rm -rf $(OUTPUT_DIR)
 
 # Generate PDF output from LaTeX input files
