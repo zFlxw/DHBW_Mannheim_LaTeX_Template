@@ -27,10 +27,10 @@ sub makeglossaries {
 # %S: source file
 $pdflatex = 'internal mypdflatex %D %O %S';
 
-# custom pdflatex function to move the pdf and synctex.gz file
+# custom pdflatex function to copy the pdf and synctex.gz file
 # from the output directory to the main directory
 sub mypdflatex {
-  use File::Copy qw(move);
+  use File::Copy qw(copy);
 
   my $file = shift;
   my ($base_name, $path) = fileparse( $file );
@@ -41,8 +41,8 @@ sub mypdflatex {
 
   $return = system 'pdflatex', @args;
 
-  move $file, $new_dir;
-  move $synctexfile, $new_dir;
+  copy $file, $new_dir;
+  copy $synctexfile, $new_dir;
 
   return $return;
 }
